@@ -12,6 +12,21 @@
     - average([1, '2']) // Retorno: undefined;
 */
 
-const average = () => { };
+const average = (arr) => { // ref. codereview do Hugo em 08/12/21 no pr do denis rodrigues
+  let startMedia = 0;
+  for (let index = 0; index < arr.length; index += 1) {
+    if (typeof arr[index] !== 'number') {
+      return undefined;
+    }
+    startMedia += arr[index];    
+  }
+  
+  if (arr.length === 0) {
+    return undefined;    
+  }
+  
+  const endMedia = Math.round(startMedia / arr.length); // math.round retorna um numero redondo
+  return endMedia;
+};
 
 module.exports = average;
