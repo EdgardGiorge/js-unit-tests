@@ -43,13 +43,61 @@ Retorno:
 
 describe('9 - Implemente os casos de teste da função `getCharacter`', () => {
   it('Verifica se a função `getCharacter` retorna o objeto do personagem corretamente.', () => {
-    fail('Teste vazio!');
-    // ESCREVA SEUS TESTES ABAIXO:
-    // Teste se a função, quando não recebe nenhum parâmetro, retorna undefined.
-    // Teste se a função retorna o objeto correto para o parâmetro 'Arya',
-    // Teste se a função retorna o objeto correto para o parâmetro 'Brienne',
-    // Teste se a função retorna o objeto correto para o parâmetro 'Melissandre',
-    // Teste se os parâmetros não são Case Sensitive.
-    // Teste se ao passar um nome que não está na tabela, a função retorna undefined.
+    expect(getCharacter('melissandre')).toStrictEqual({
+      name: 'Melissandre',
+      class: 'Necromancer',
+      phrases: ['Death By Fire Is The Purest Death.', 'For The Night Is Dark And Full Of Terrors.']
+    });
   });
+  
+  test('Chack se a função, quando não recebe nenhum parâmetro, retorna undefined.', () => {
+    expect(getCharacter()).toBeUndefined();
+  }); // Teste se a função, quando não recebe nenhum parâmetro, retorna undefined.
+
+  test("Check se a função retorna o objeto correto para o parâmetro 'arya'", () => {
+    expect(getCharacter('arya')).toStrictEqual({
+      name: 'Arya Stark',
+      class: 'Rogue',
+      phrases: ['Not today', 'A girl has no name.']
+    });
+  }); // Teste se a função retorna o objeto correto para o parâmetro 'Arya',
+  
+  test("Check se a função retorna o objeto correto para o parâmetro 'brienne'", () => {
+    expect(getCharacter('brienne')).toStrictEqual({
+      name: 'Brienne Tarth',
+      class: 'Knight',
+      phrases: ['Im No Lady, Your Grace.', 'I, Brienne Of Tarth, Sentence You To Die.']
+    });
+  }); // Teste se a função retorna o objeto correto para o parâmetro 'Brienne',
+  
+  test("Check se a função retorna o objeto correto para o parâmetro 'melissandre'", () => {
+    expect(getCharacter('melissandre')).toStrictEqual({
+      name: 'Melissandre',
+      class: 'Necromancer',
+      phrases: ['Death By Fire Is The Purest Death.', 'For The Night Is Dark And Full Of Terrors.']
+    });
+  }); // Teste se a função retorna o objeto correto para o parâmetro 'Melissandre',
+    
+  test('Check se os parâmetros não são Case Sensitive.', () => {
+    expect(getCharacter('Arya')).toStrictEqual({
+      name: 'Arya Stark',
+      class: 'Rogue',
+      phrases: ['Not today', 'A girl has no name.']
+    });
+
+    expect(getCharacter('ArYa')).toStrictEqual({
+      name: 'Arya Stark',
+      class: 'Rogue',
+      phrases: ['Not today', 'A girl has no name.']
+    }); 
+    expect(getCharacter('ARYA')).toStrictEqual({
+      name: 'Arya Stark',
+      class: 'Rogue',
+      phrases: ['Not today', 'A girl has no name.']
+    });
+  }); // Teste se os parâmetros não são Case Sensitive.
+  
+  test('Check se ao passar um nome que não está na tabela, a função retorna undefined.', () => {
+    expect(getCharacter('Giorge')).toBeUndefined();
+  }); // Teste se ao passar um nome que não está na tabela, a função retorna undefined.  
 });
